@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/adb29892fe.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Dictionary web app</title>
+</head>
+<body class="dark:bg-slate-800 transition-all ease-in font-sans">
+
+
+        <!-- global container -->
+        <div class="flex justify-center min-h-screen p-10">
+            <!-- content wrapper -->
+            <div class="w-full max-w-2xl " id="content" >
+                <!-- top content -->
+                <div class="flex items-center justify-between w-full mb-10">
+                    <!-- book img -->
+                    <div>
+                        <i class="fa-solid fa-book text-lightGray text-3xl dark:text-white"></i>
+                    </div>
+                    <!-- right content -->
+                    <div class="flex ">
+                        <select id="select" class=" max-w-[6rem] capitalize cursor-pointer font-bold text-black bg-transparent dark:text-white outline-none">
+                            <option value="serif" class="font-semibold text-[.8rem]">Serif</option>
+                            <option value="sans" class="font-semibold text-[.8rem]">Sans Serif</option>
+                            <option value="mono" class="font-semibold text-[.8rem]">Mono</option>
+                        </select>
+                        <!-- wrapper line -->
+                        <div class="text-darkGray border mx-5"></div>
+                        <!-- checkbox -->
+                        <label class="relative flex items-center cursor-pointer">
+                            <input id="darkMode" type="checkbox" value="" class="sr-only peer">
+                            <div class="w-11 h-6 bg-darkGray peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[5.5px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-boldPurple"></div>
+                        </label>
+                        <!-- dark toggle -->
+                        <button class="ml-2 text-2xl" id="moon-btn">
+                            <i class="fa-regular fa-moon dark:text-boldPurple"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- input -->
+                <form class="mb-10" id="sub">
+                    <label class="relative block">
+                        <input
+                            class="w-full bg-inputBg placeholder:font-italitc border border-slate-400 drop-shadow-md rounded-md py-2 pl-3 pr-10 focus:outline-none"
+                            placeholder="Enter your keyword to search"
+                            type="text" 
+                            id="main-input"/>
+                        <span class="absolute inset-y-0 right-0 flex items-center pr-3">
+                            <svg class="h-5 w-5 fill-boldPurple" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30"
+                                height="30" viewBox="0 0 30 30">
+                                <path
+                                    d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z">
+                                </path>
+                            </svg>
+                        </span>
+                    </label>
+                </form>
+                <!-- until it loads -->
+                <section class="flex items-center justify-center w-full flex-col text-center pt-10" id="pre-section">
+                    <img src="/images/emoji_open_book-9a5416d7.png" alt="bookImage" class="order-1 mb-10 block aspect-square w-16 bg-contain">
+                    <h1 class="text-black dark:text-white order-2 mb-6 text-xl font-semibold">Frontend Mentor Dictionary</h1>
+                    <q class="text-gray-500 order-3 mb-2 text-secondary-400 md:text-lg">The limits of my language mean the limits of my world.</q>
+                    <a href="https://en.wikipedia.org/wiki/Ludwig_Wittgenstein" target="_blank" class="text-gray-600 order-4 font-bold text-secondary-400 transition-colors duration-300 focus-within:text-accent hover:text-boldPurple md:text-lg">Ludwig Wittgenstein</a>
+                </section>
+                <!-- keyword -->
+                <section class="main-container hidden">
+                    <div class="flex justify-between items-center w-full mb-10">
+                        <div>
+                            <h1 class="text-5xl font-bold text-black dark:text-white" id="word"></h1>
+                            <span class="text-md text-boldPurple font-normal" id="phonetic"></span>
+                        </div>
+                        <button class=" w-14 h-14  items-center justify-center rounded-full bg-lightPurple hover:opacity-75" id="audio-btn">
+                            <audio src="#" id="audio"></audio>
+                            <i class="fa-solid fa-play text-boldPurple"></i>
+                        </button>
+                    </div> 
+                    <!-- meanings wrapper -->
+                <article id="meanings-container">
+                    <!-- <div class="flex items-center w-full mb-10">
+                        <h3 class="font-medium text-lg dark:text-white font-lob tracking-wide">noun</h3>
+                        <div class="ml-3 border w-full bg-lightGray h-[.1]"></div>
+                    </div>
+                    <div class="mb-10 ">
+                        <h1 class="text-lg font-normal text-lightGray mb-2">Meaning</h1>
+                        <ul class="flex flex-col gap-3 mb-5 dark:text-white meanings-container">
+                            <li class="list-disc marker:text-boldPurple">"(etc.) A set of keys used to operate a typewriter, computer etc."</li>
+                            <li class="list-disc marker:text-boldPurple">"A component of many instruments including the piano, organ, and harpsichord consisting of usually black and white keys that cause different tones to be produced when struck."</li>
+                            <li class="list-disc marker:text-boldPurple">"A device with keys of a musical keyboard, used to control electronic sound-producing devices which may be built into or separate from the keyboard device."</li>
+                        </ul>
+                        <h3 class="font-normal text-lg text-lightGray">Synonyms</h3>
+                        <h6 class="break-words ml-7 font-bold text-lg text-boldPurple synonym">auto,automobile,carriage,motor,motorcar,vehicle,basket,gondola,carload,wagonload,carriage,railcar,wagon</>
+                    </div>   -->
+                </article>
+                <!-- source -->
+                <div>
+                    <h3 class="font-normal text-lg text-lightGray dark:text-white">Source</h3>
+                    <a href="#" id="source-url" class="underline dark:text-white src"></a>
+                    <span>
+                        <i class="fa-sharp fa-solid fa-arrow-up-right-from-square text-lightGray dark:text-white"></i>
+                    </span>
+                        </div>
+                </section>
+            </div>
+        </div>
+    
+    <script type="module" src="./app/app.js"></script>
+</body>
+</html>
